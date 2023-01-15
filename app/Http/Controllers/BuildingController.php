@@ -10,6 +10,9 @@ use App\Models\Flat;
 use Illuminate\Http\Request;
 
 
+use Validator;
+
+
 class BuildingController extends Controller
 {
     
@@ -23,14 +26,9 @@ class BuildingController extends Controller
 
         $building = Building::with('flats')->where('id',$building_id)->where('user_id',$user->id)->first();
 
-
-
         if($building){
-
-
             return view('building',['building'=>$building]);
-           
-
+    
         } else {
             exit('building record doesnt exists or you have no access right to this record');
         }
@@ -67,6 +65,31 @@ public function update_fat_record(Request $request){
     dd($request->all());
 
 }
+
+
+// API Functions 
+
+public function flat_occupancy(Request $request) {
+
+    $validator = Validator::make($request->all(), [ // lets check if data are ok
+            
+        'building_id'  => 'required',
+        'flat_no'      => 'required'
+        
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json(['errors' => $validator->errors()], 422);
+    } // if not - usual
+
+
+    $flat = Flat::where(['number'=>$request->flat_no, 'building_id'=>$request->building_id])->first();
+
+    return response()->json(['status' => $flat->status_id], 200);
+
+
+}
+
  
 
 }
