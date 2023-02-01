@@ -23,6 +23,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/flat_occupancy/', [BuildingController::class,'flat_occupancy']);
 
-Route::get('/flat/{building}/{flat}', BuildingController::class,'flat_occupancy_other');
+Route::get('/flat/{building}/{flat}', [BuildingController::class,'flat_occupancy_other']);
 
     
