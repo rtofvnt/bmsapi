@@ -90,6 +90,15 @@ public function flat_occupancy(Request $request) {
 
 }
 
- 
+public function flat_occupancy_other($building, $flat) {
+
+
+    $flat = Flat::where(['number'=>$flat, 'building_id'=>$building])->first();
+
+ echo $flat->status_id;
+
+
+} 
+
 
 }
