@@ -25,4 +25,7 @@ Route::get('/flat_occupancy/', [BuildingController::class,'flat_occupancy']);
 
 Route::get('/flat/{building}/{flat}', [BuildingController::class,'flat_occupancy_other']);
 
+
+Route::post('/post', [BuildingController::class,'post']);
+
     

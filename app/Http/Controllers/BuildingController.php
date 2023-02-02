@@ -8,6 +8,7 @@ use App\Models\Building;
 use App\Models\Flat;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 
 use Validator;
@@ -99,6 +100,15 @@ public function flat_occupancy_other($building, $flat) {
 
 
 } 
+
+
+public function post(Request $request){
+
+    $json = json_encode($request->all());
+    
+    Storage::disk('local')->put('posttest.json', $json);
+
+}
 
 
 }
