@@ -86,7 +86,11 @@ public function flat_occupancy(Request $request) {
 
     $flat = Flat::where(['number'=>$request->flat_no, 'building_id'=>$request->building_id])->first();
 
-    return response()->json(['status' => $flat->status_id], 200);
+    if($flat) {
+        return response()->json(['status' => $flat->status_id], 200);
+    } else {
+        return response()->json(['status' => 0], 200);
+    }    
 
 
 }
