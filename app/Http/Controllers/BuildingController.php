@@ -100,7 +100,7 @@ public function flat_occupancy_other($building, $flat) {
 
     $flat = Flat::where(['number'=>$flat, 'building_id'=>$building])->first();
 
- echo $flat->status_id;
+ echo "{status:".$flat->status_id."}";
 
 
 } 
