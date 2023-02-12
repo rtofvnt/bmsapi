@@ -110,7 +110,7 @@ public function post(Request $request){
 
     $json = json_encode($request->all());
     
-    Storage::disk('local')->put('posttest.json', $json);
+    Storage::disk('local')->append('posttest.json', $json);
 
 }
 
